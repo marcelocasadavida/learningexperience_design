@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -401,8 +402,6 @@ Responda como um mentor de artes que mistura técnica e criatividade.</pre>
         <label class="q-label" for="char">Qual personagem você escolheu?</label>
         <div class="scale" id="char-chips"><button aria-pressed="false" data-v="Creeper">Creeper</button><button aria-pressed="false" data-v="">Outro personagem</button></div>
         <input id="char" type="text" placeholder="Ex.: Creeper, Steve, um robô que eu inventei..." autocomplete="off">
-        <label class="q-label" for="why">Por que esse personagem?</label>
-        <textarea id="why" style="min-height:76px" placeholder="O que você gosta nele? De onde ele vem?"></textarea>
       </div>
     </div>
     <aside class="edu"><b>Olhar de educador</b><p>Este é o momento em que a técnica encontra o que o learner ama. A escolha do personagem conta muito sobre ele: seus jogos, séries, referências e o que o motiva. Use essa resposta como porta de entrada para a conversa e para as próximas LXs.</p></aside>
@@ -591,12 +590,11 @@ Responda como um mentor de artes que mistura técnica e criatividade.</pre>
   }
 
   function initHero(){
-    const inp=$('#char'), why=$('#why'), chips=document.querySelectorAll('#char-chips button');
+    const inp=$('#char'), chips=document.querySelectorAll('#char-chips button');
     const sync=()=>chips.forEach(c=>c.setAttribute('aria-pressed', c.dataset.v ? S.char===c.dataset.v : (!!S.char && S.char!=='Creeper') || c===document.activeElement && !S.char));
-    inp.value=S.char||''; why.value=S.why||'';
+    inp.value=S.char||'';
     chips.forEach(c=>c.onclick=()=>{ if(c.dataset.v){S.char=c.dataset.v; inp.value=c.dataset.v;} else { if(S.char==='Creeper'){S.char='';inp.value='';} inp.focus(); } save(); sync(); chips.forEach(x=>x.setAttribute('aria-pressed',x===c)); });
     inp.oninput=()=>{S.char=inp.value.trim(); save(); sync();};
-    why.oninput=()=>{S.why=why.value; save();};
     sync();
   }
 
